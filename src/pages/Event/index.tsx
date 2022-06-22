@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import { Header } from "../../components/Header"
-import { Lesson } from "../../components/Lesson"
 import { Sidebar } from "../../components/Sidebar"
 import { Video } from "../../components/Video"
 
@@ -11,13 +10,13 @@ interface EventProps {
 
 function Event({ children }: EventProps) {
   return (
-    <>
-      <Header></Header>
-      <Video></Video>
-      <Sidebar></Sidebar>
-      <Lesson></Lesson>
-
-    </>
+    <div className="flex flex-col min-h-screen" >
+      <Header />
+      <main className='flex flex-1' >
+        <Video />
+        <Sidebar />
+      </main>
+    </div>
   );
 };
 

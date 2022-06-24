@@ -1,32 +1,86 @@
+import { DefaultUi, Player, Youtube } from "@vime/react";
+import { gql, useQuery } from "@apollo/client";
 import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning } from "phosphor-react";
 
-export function Video() {
+import '@vime/core/themes/default.css'
+
+const GET_LESSON_BY_SLUG_QUERY = gql`
+    query GetLessonBySlug($slug: String) {
+    lesson(where: {slug: $slug}) {
+        title
+        videoId
+        description
+        teacher{
+        bio
+        avatarURL
+        name
+        }
+    }
+}`;
+
+interface GetLessonBySlugResonse {
+    lesson: {
+        title: string;
+        videoId: string;
+        description: string;
+        teacher: {
+            bio: string
+            avatarURL: string;
+            name: string;
+        }
+    }
+}
+
+interface VideoProps {
+    lessonSlug: String;
+}
+
+export function Video(props: VideoProps) {
+    const { data } = useQuery<GetLessonBySlugResonse>(GET_LESSON_BY_SLUG_QUERY, {
+        variables: {
+            slug: props.lessonSlug
+        },
+    });
+
+    if (!data) {
+        return (
+            <div className="flex-1">
+                <p>Carregando...</p>
+            </div>
+        )
+    }
+
     return (
-        <div className="flex-1 " >
-            <div className="bg-black fkex justify-center">
-                <div className="h-full max-w-[1100px] max-h-[60vh] aspect-video"></div>
+        <div className="flex-1" >
+            <div className="bg-black flex justify-center">
+                <div className="h-full w-full  max-w-[1100px] max-h-[60vh] aspect-video">
+                    <Player>
+                        <Youtube videoId={data.lesson.videoId} />
+                        <DefaultUi />
+                    </Player>
+                </div>
             </div>
             <div className="p-8 max-w-[1100px] mx-auto">
                 <div className="flex items-start gap-16">
                     <div className="flex-1">
                         <h1 className="text-2xl font-bold">
-                            Aula 01
+                            {data.lesson.title}
                         </h1>
                         <p className="mt-4 text-gray-200 leading-relaxed">
-                            Descrição do vídeo
+                            {data.lesson.description}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
                             <img
                                 className="h-16 w-16 rounded-full border-2 border-blue-500"
-                                src="https://github.com/esbnet.png"
+                                src={data.lesson.teacher.avatarURL}
                                 alt="avatar"
                             />
                             <div className="leading-relaxed">
                                 <strong className="font-bold text-2xl block">
-                                    Edmilson Soares
+                                    {data.lesson.teacher.name}
                                 </strong>
                                 <span className="text-gray-200 text-sm block">
-                                    Full Stack Developer @ quarksCode
+                                    {data.lesson.teacher.bio}
                                 </span>
                             </div>
                         </div>

@@ -26,8 +26,12 @@ export function Lesson(props: LessonProps) {
                 <span className="text-gray-300">
                     {availableDateFormated}
                 </span>
+
                 <div
-                    className={`rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500 ${isActiveLesson ? 'bg-green-500' : ''}`}
+                    className={classNames('rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500', {
+                        'bg-green-500': isActiveLesson,
+                        "relative before:absolute before:content-[''] before:bg-green-500 before:p-2 before:rotate-45 before:top-[40%] before:left-[-8px]": isActiveLesson
+                    })}
                 >
                     <header className="flex items-center justify-between">
                         {isLassonAvailable ? (

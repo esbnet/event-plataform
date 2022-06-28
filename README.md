@@ -2,7 +2,7 @@
 
 Aplicativo desenvolvido em reactjs(ts), graphql (apollo client) e tailwind para consumir conteúdo de uma API no GraphCMS(https://app.graphcms.com/). Nele é possível se cadastrar em um treinamento, tutorial ou uma sequência de vídeos que são liberados de acordo com sua programação e mediante inscrição através de um formulário na tela principal.
 
-<center>![Telas da aplicação](/src/doc/animacao.gif)</center>
+<center> ![Telas da aplicação](/src/doc/animacao.gif) </center>
 
 ## techs: 
 - reactjs

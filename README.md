@@ -13,6 +13,7 @@ Aplicativo desenvolvido em reactjs(ts), graphql (apollo client) e tailwind para 
 
 ---
 github:  https://github.com/esbnet/event-plataform
+
 web: https://event-plataform-esbnet.vercel.app
 
 ---

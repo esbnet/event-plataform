@@ -11,9 +11,9 @@ Aplicativo desenvolvido em reactjs(ts), graphql (apollo client) e tailwind para 
 - graphql / apollo-client
 - tailwindcss 
 
-
-- github:  https://github.com/esbnet/event-plataform
-- web: https://event-plataform-esbnet.vercel.app
+---
+github:  https://github.com/esbnet/event-plataform
+web: https://event-plataform-esbnet.vercel.app
 
 ---
 <a href="https://www.linkedin.com/in/edmilson-soares/">
